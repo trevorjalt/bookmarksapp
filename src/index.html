@@ -4,9 +4,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>First Webpack Project</title>
+  <title>my bookmarks.</title>
 </head>
 <body>
+    <section class="container">
+        <div class="bookmarks-app">
+            <header>
+                <h1>my bookmarks.</h1>
+                <div>
+                    <form id="js-create-bookmark" action="/action_page.php" method="get">
+                        <button id="add-bookmark" class="button" type="submit" value="submit">+ new.</button>
+                        <select name="filter" size= "1">
+                            <option value="" disable selected hidden>filter.</option>
+                            <option value="5stars">5 stars.</option>
+                            <option value="4stars">4+ stars.</option>
+                            <option value="3stars">3+ stars.</option>
+                            <option value="2stars">2+ stars.</option>
+                            <option value="1stars">1+ stars.</option>
+                        </select>
+                    </form> 
+                </div>
+            </header>
+            <div class="bookmark-condensed">
+                <section class="bookmark-top">
+                    <div class="content-header">
+                        <p class="text-margin">bookmark 1.</p>
+                        <form for="close-button" id="js-close-expanded" class="close-header-right js-header-right" id="close-button">
+                            <button id="remove-bookmark" class="button2 close-button" type="submit" value="submit">remove.</button>
+                        </form>
+                    </div>
+                </section>
+                <section class="text-margin">
+                <p>rating.</p>
+                </section>
+            </div>
+            <div class="bookmark-condensed">
+                <section class="bookmark-top">
+                    <div class="content-header">
+                        <p class="text-margin">bookmark 1.</p>
+                        <form for="close-button" id="js-close-expanded" class="close-header-right js-header-right" id="close-button">
+                            <button id="close" class="button2 close-button" type="submit" value="submit">close.</button>
+                        </form>
+                    </div>
+                </section>
+                <section class="text-margin">
+                <p>"It is better to light a candle than curse the darkness." - Eleanor Roosevelt</p>
+                <div class="button-align">
+                    <form id="js-bookmark-full-view" action="/action_page.php" method="get">
+                        <button id="visit-site" class="button" type="submit" value="submit">visit.</button>
+                        <button id="remove-bookmark" class="button" type="submit" value="submit">remove.</button>
+                    </form>
+                </div>
+                <p>rating.</p>
+                </section>
+            </div>
+            <div class="bookmark-condensed">
+                <section class="bookmark-top">
+                    <div class="content-header">
+                        <p class="text-margin">create a bookmark.</p>
+                        <form for="close-button" id="js-close-expanded" class="close-header-right js-header-right" id="close-button">
+                            <button id="close" class="button2 close-button" type="submit" value="submit">close.</button>
+                        </form>
+                    </div>
+                </section>
+                <section class="bookmarks-app">
+                    <div class="input-container">
+                            <form id="js-add-bookmark" class="add-new-input">
+                                <label for="bookmark-title">title.</label>
+                                <input type="text" name="title" id="bookmark-title">
+                                <label for="bookmark-url">web address.</label>
+                                <input type="url" name="url" id="url" placeholder="https://example.com" pattern="https://.*" size="30"required>
+                                <label for="bookmark-description">description.</label>
+                                <input type="text" name="title" id="bookmark-description">
+                                </div>
+                                </section>
+                                <section>
+                                    <div class= "add-bookmark-align">
+                                        <div>
+                                        <legend>rating.</legend>
+                                        <input type="radio" id="five-stars" name="choice" value="five-stars">
+                                        <label for="five-stars" required>5</label>
+                                        <input type="radio" id="four-stars" name="choice" value="four-stars">
+                                        <label for="four-stars">4</label>
+                                        <input type="radio" id="three-stars" name="choice" value="three-stars">
+                                        <label for="three-stars">3</label>
+                                        <input type="radio" id="two-stars" name="choice" value="two-stars">
+                                        <label for="two-stars">2</label>
+                                        <input type="radio" id="one-star" name="choice" value="one-stars">
+                                        <label for="one-stars">1</label>
+                                        </div>
+                                    </div>
+                                    <div class="add-bookmark-align">
+                                        <button id="add-bookmark" class="button close-button" type="submit" value="submit">+ new.</button>
+                                    </div>   
+                                </section>
+                            </form>
+                        </section>    
+        </div>
+    </section>
+    <footer>
+        <h4 class = "footer-copy">© Copyright Trevor J Alt. All Rights Reserved.</h4>
+    </footer>
   <div id="root"></div>
 </body>
 </html>

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+body {
+  background: url(images/stacked-books-bg.png) no-repeat center / cover;
+  background-attachment: fixed;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #764248;
+  font-size: 3rem;
+  margin: 3vh;
+  /* background-color: white; */
+}
+
+h2, h4 {
+  color: #764248;
+}
+
+header{
+  background-color: #E3C5BB;
+  padding: 3vh;
+  width: 100vw;
+  top: 0;
+}
+
+footer {
+  font-family: 'Nunito', sans-serif;
+  text-align: center;
+  margin-top: 2vh;
+  background-color: #E3C5BB;
+  padding: 1.5vh;
+  width: 100vw;
+}
+
+.bookmarks-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  background-color: #DFE2CF;
+  color: #664A33;
+  padding: 1.7vh;
+  border-radius: 20px;
+  border: 0;
+  font-size: 1.3rem;
+  margin-right: 1vw;
+}
+
+.button2 {
+  background-color: #F2F7F7;
+  color: #764248;
+  padding: 1.7vh;
+  border-radius: 20px;
+  border: 0;
+  font-size: 1.3rem;
+  margin-right: 1vw;
+}
+
+
+select {
+  background-color: #DFE2CF;
+  color: #664A33;
+  padding: 1.2vh;
+  border-radius: 20px;
+  border: 0;
+  font-size: 1.3rem; 
+  margin-left: 1vw;
+}
+
+.bookmark-condensed {
+  background-color: white;
+  width: 80%;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 3vh;
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+.bookmark-top {
+  background-color: #B3CFD0;
+  border-radius: 20px 20px 0 0;
+  padding: 1vh;
+}
+
+.text-margin {
+  margin-left: 3vw;
+  margin-right: 3vw;
+}
+
+.button-align {
+  text-align: center;
+}
+
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-button {
+  margin-right: 3vw;
+}
+
+.input-container {
+  width: 80%;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #764248;
+  text-align: left;
+  margin-top: 2vh
+}
+
+form input {
+  color: #000;
+  font-size: 18px;
+  width: 100%; 
+}
+
+legend {
+  font-size:  1.3rem;
+  color: #764248;
+}
+
+form textarea {
+  height: 20rem;
+  width: 100%;
+  color: #000;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.add-bookmark-align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh;
+}
+
+
+
