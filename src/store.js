@@ -7,15 +7,15 @@ const setError = function(error) {
 };
 
 const addBookmark = function (bookmark) {
-  // let expand = {expand:false};
-  // bookmark = {...bookmark, ...expand};
+  let expand = {expand:false};
+  bookmark = {...bookmark, ...expand};
   this.bookmarks.push(bookmark);
-  console.log(bookmark);
+  // console.log(bookmark);
 };
 
-// const findById(id) {
-//   return this.bookmarks.find(currentBookmark => currentBookmark.id === id);
-// }
+const findById = function (id) {
+  return this.bookmarks.find(currentBookmark => currentBookmark.id === id);
+}
 
 const toggleAddNewBookmark = function() {
   this.addNewBookmark = !this.addNewBookmark;
@@ -32,7 +32,7 @@ export default {
   addNewBookmark,
   error,
   setError,
-  // findById,
+  findById,
   addBookmark,
   toggleAddNewBookmark,
   // toggleExpandBookmark

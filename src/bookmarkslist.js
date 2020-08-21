@@ -6,7 +6,7 @@ import api from './api';
 
 const generateBookmarkCondensedElement = function (bookmark) {
   return `
-      <div class="bookmark-render">
+      <div id="js-bookmark-item" class="bookmark-render">
       <section class="bookmark-top">
         <div class="content-header">
             <p class="text-margin">${bookmark.title}.</p>
@@ -17,7 +17,8 @@ const generateBookmarkCondensedElement = function (bookmark) {
     </section>
     <section class="text-margin">
       <p>${bookmark.rating}.</p>
-    </section></div>`;
+    </section>
+    </div>`;
 };
 
 const generateBookmarkCreateScreen = function () {
@@ -65,6 +66,8 @@ const generateBookmarkCreateScreen = function () {
     </div>`;
 };
 
+// const generateItemExpandedView = 
+
 const generateBookmarksString = function (bookmarkList) {
   const bookmarks = bookmarkList.map((bookmark) => generateBookmarkCondensedElement(bookmark));
   return bookmarks.join('');
@@ -79,10 +82,19 @@ const render = function () {
   } else {
     $('#create-screen').empty();
   }
-    // render the bookmarks in the DOM
-    const bookmarksString = generateBookmarksString(bookmarks);
-    // insert that HTML into the DOM
-    $('#js-bookmark-list').html(bookmarksString);
+  // render the bookmarks in the DOM
+  const bookmarksString = generateBookmarksString(bookmarks);
+  // insert that HTML into the DOM
+  $('#js-bookmark-list').html(bookmarksString);
+};
+
+const handleCloseButton = function () {
+  $('#create-screen').on('click', '#close', function () {
+    // $('#create-screen').empty();
+    store.toggleAddNewBookmark();
+    console.log('click');
+    render();
+  });
 };
 
 const handleCreateScreen = function () {
@@ -113,16 +125,32 @@ const handleNewBookmarkSubmit = function () {
         store.toggleAddNewBookmark();
         render();
       });
-      // .catch((error) => {
-      //   store.setError(error.message);
-      //   renderError();
-      // });
+    // .catch((error) => {
+    //   store.setError(error.message);
+    //   renderError();
+    // });
   });
 };
+
+const getItemIdFromElement = function (bookmark) {
+  return $(bookmark)
+    .closest('.js-bookmark-item')
+    .data('bookmark-id');
+};
+
+// const handleExpandBookmark = function () {
+//   $('#js-bookmark-list').on('click', '#js-bookmark-item', function (event) {
+//     const id = getItemIdFromElement(event.currentTarget);
+//     store.toggleExpandBookmark(id);
+//     render();
+//   });
+// };
 
 const bindEventListeners = function () {
   handleNewBookmarkSubmit();
   handleCreateScreen();
+  handleCloseButton();
+  // handleExpandBookmark();
 
 };
 
