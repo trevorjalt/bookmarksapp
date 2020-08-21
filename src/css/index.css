@@ -47,7 +47,7 @@ footer {
   align-items: center;
 }
 
-.button {
+.brown-button {
   background-color: #DFE2CF;
   color: #664A33;
   padding: 1.7vh;
@@ -57,7 +57,7 @@ footer {
   margin-right: 1vw;
 }
 
-.button2 {
+.gray-button {
   background-color: #F2F7F7;
   color: #764248;
   padding: 1.7vh;
@@ -93,7 +93,7 @@ ul#js-bookmark-list{
   list-style-type: none;
 } */
 
-.bookmark-condensed {
+.bookmark-item-template {
   width: 80%;
 }
 
@@ -133,7 +133,7 @@ ul#js-bookmark-list{
   align-items: center;
 }
 
-.close-button {
+.gray-button-margin {
   margin-right: 3vw;
 }
 

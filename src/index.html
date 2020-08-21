@@ -13,7 +13,7 @@
                 <h1>my bookmarks.</h1>
                 <div>
                     <div id="js-create-bookmark" action="/action_page.php" method="get">
-                        <button id="new-bookmark" class="button">+ new.</button>
+                        <button id="new-bookmark" class="brown-button">+ new.</button>
                         <select name="filter" size= "1">
                             <option value="" disable selected hidden>filter.</option>
                             <option value="5stars">5 stars.</option>
@@ -25,30 +25,8 @@
                     </div> 
                 </div>
             </header>
-            <div id="create-screen" class="bookmark-condensed"></div>
-            <section id="js-bookmark-list" class="bookmark-condensed"></section>
-            <ul>
-            <li class="bookmark-condensed">
-                <section class="bookmark-top">
-                    <div class="content-header">
-                        <p class="text-margin">bookmark 1.</p>
-                        <form for="close-button" id="js-close-expanded" class="close-header-right js-header-right" id="close-button">
-                            <button id="close" class="button2 close-button" type="submit" value="submit">close.</button>
-                        </form>
-                    </div>
-                </section>
-                <section class="text-margin">
-                <p>"It is better to light a candle than curse the darkness." - Eleanor Roosevelt</p>
-                <div class="button-align">
-                    <form id="js-bookmark-full-view" action="/action_page.php" method="get">
-                        <button id="visit-site" class="button" type="submit" value="submit">visit.</button>
-                        <button id="remove-bookmark" class="button" type="submit" value="submit">remove.</button>
-                    </form>
-                </div>
-                <p>rating.</p>
-                </section>
-            </li>
-            </ul>
+            <div id="create-screen" class="bookmark-item-template"></div>
+            <section id="js-bookmark-list" class="bookmark-item-template"></section>
         </div>
     </section>
     <footer>
