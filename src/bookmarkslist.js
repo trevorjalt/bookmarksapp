@@ -5,41 +5,45 @@ import api from './api';
 
 
 const generateBookmarkElement = function (bookmark) {
-  if (bookmark.expand) {
-    return `
-    <div class="bookmark-render js-bookmark-item" data-item-id="${bookmark.id}">
-      <section class="bookmark-top">
-        <div class="content-header">
-          <p class="text-margin">${bookmark.title}</p>
-          <button id="close-button" class="gray-button gray-button-margin">close.</button>
-          </div>
-      </section>
-      <section class="text-margin">
-        <p>${bookmark.desc}</p>
-          <div class="button-align">
-
-              <a href="${bookmark.url}" target="_blank">visit.</a>
-              <button id="js-remove-bookmark" class="gray-button gray-button-margin">remove.</button>
-
-          </div>
-          <p>${bookmark.rating}</p>
-      </section>
-    </div>`;
-  } else {
-    return `
+  if (bookmark.rating >= store.rating) {
+    if (bookmark.expand) {
+      return `
       <div class="bookmark-render js-bookmark-item" data-item-id="${bookmark.id}">
         <section class="bookmark-top">
           <div class="content-header">
-            <p class="text-margin">${bookmark.title}.</p>
-
-              <button id="js-remove-bookmark" class="gray-button gray-button-margin">remove.</button>
-            
-          </div>
+            <p class="text-margin">${bookmark.title}</p>
+            <button id="close-button" class="gray-button gray-button-margin">close.</button>
+            </div>
         </section>
         <section class="text-margin">
-          <p>${bookmark.rating}.</p>
+          <p>${bookmark.desc}</p>
+            <div class="button-align">
+
+                <a href="${bookmark.url}" target="_blank">visit.</a>
+                <button id="js-remove-bookmark" class="gray-button gray-button-margin">remove.</button>
+
+            </div>
+            <p>${bookmark.rating}</p>
         </section>
       </div>`;
+    } else {
+      return `
+        <div class="bookmark-render js-bookmark-item" data-item-id="${bookmark.id}">
+          <section class="bookmark-top">
+            <div class="content-header">
+              <p class="text-margin">${bookmark.title}.</p>
+
+                <button id="js-remove-bookmark" class="gray-button gray-button-margin">remove.</button>
+              
+            </div>
+          </section>
+          <section class="text-margin">
+            <p>${bookmark.rating}.</p>
+          </section>
+        </div>`;
+    }
+  } else {
+    return '';
   }
 };
 
@@ -144,7 +148,7 @@ const handleNewBookmarkSubmit = function () {
         store.addBookmark(newBookmark);
         store.toggleAddNewBookmark();
         render();
-      });
+      })
     // .catch((error) => {
     //   store.setError(error.message);
     //   renderError();
@@ -159,10 +163,10 @@ const getItemIdFromElement = function (item) {
 
 };
 
-const handleExpandBookmark = () => {
+const handleExpandBookmark = function () {
   $('#js-bookmark-list').on('click', '.js-bookmark-item', function (event) {
     const id = getItemIdFromElement(event.currentTarget);
-    console.log(event.currentTarget)
+    console.log(event.currentTarget);
     const bookmark = store.findById(id);
     store.findAndUpdate(id, {expand: !bookmark.expand});
     render();
@@ -172,7 +176,7 @@ const handleExpandBookmark = () => {
 const handleDeleteItemClicked = function () {
   $('#js-bookmark-list').on('click', '#js-remove-bookmark', function (event) {
     console.log('remove');
-    console.log($(event.target))
+    console.log($(event.target));
     const id = getItemIdFromElement(event.target);
     
 
@@ -189,6 +193,15 @@ const handleDeleteItemClicked = function () {
   });
 };
 
+const handleRatingFilterChange = function () {
+  $('.js-filter-rating').change(function (event) {
+    let val = $(event.target).val();
+    store.rating = val;
+    store.filterBookmarks(store.rating);
+    render();
+  });
+};
+
 
 
 const bindEventListeners = function () {
@@ -197,6 +210,7 @@ const bindEventListeners = function () {
   handleCloseButton();
   handleExpandBookmark();
   handleDeleteItemClicked();
+  handleRatingFilterChange();
 
 };
 

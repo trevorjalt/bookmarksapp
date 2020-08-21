@@ -13,7 +13,7 @@ function main() {
       // console.log(bookmarks)
       bookmarks.forEach((bookmark) => store.addBookmark(bookmark));
       bookmarkslist.render();
-      console.log(store.bookmarks)
+      console.log(store.bookmarks);
     });
   
   console.log('DOM is loaded');

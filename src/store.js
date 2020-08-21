@@ -16,12 +16,14 @@ const addBookmark = function (bookmark) {
 
 const findById = function (id) {
   return this.bookmarks.find(currentBookmark => currentBookmark.id === id);
-}
+};
 
-const findAndDelete = function (id) {
-  console.log(this.bookmarks)
-  this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
-}
+const filterBookmarks =  function () {
+  return this.bookmarks.filter(bookmark => bookmark.rating >= this.rating);
+  // take in userFilter = 4+
+  // filter through all the bookmark ratings to return the requested
+};
+
 
 const toggleAddNewBookmark = function() {
   this.addNewBookmark = !this.addNewBookmark;
@@ -29,7 +31,12 @@ const toggleAddNewBookmark = function() {
 
 const findAndUpdate = function(id, newData) {
   Object.assign(this.bookmarks.find(bookmark => bookmark.id === id), newData);
-}
+};
+
+const findAndDelete = function (id) {
+  console.log(this.bookmarks);
+  this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
+};
 
 
 
@@ -45,6 +52,5 @@ export default {
   findAndDelete,
   toggleAddNewBookmark,
   findAndUpdate,
-
-
+  filterBookmarks
 };
