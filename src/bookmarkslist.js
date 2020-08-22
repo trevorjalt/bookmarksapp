@@ -10,7 +10,7 @@ const generateBookmarkElement = function (bookmark) {
   if (bookmark.rating >= store.rating) {
     if (bookmark.expand) {
       return `
-      <div class="bookmark-render js-bookmark-item" data-item-id="${bookmark.id}">
+      <div id="saved-bookmark" class="bookmark-render js-bookmark-item" data-item-id="${bookmark.id}">
         <section class="bookmark-top">
           <div class="content-header">
             <h3 class="text-margin">${bookmark.title}.</h3>
@@ -23,9 +23,10 @@ const generateBookmarkElement = function (bookmark) {
 
                 <a href="${bookmark.url}" id="visit-site" target="_blank" class="gray-button">visit.</a>
                 <button id="close-button" class="gray-button gray-button-margin">close.</button>
-
             </div>
-            <p>${bookmark.rating || 0}</p>
+            <div>
+              <p>${bookmark.rating || 0} ⭐️</p>
+            </div>
         </section>
       </div>`;
     } else {
@@ -41,7 +42,7 @@ const generateBookmarkElement = function (bookmark) {
             </div>
           </section>
           <section class="text-margin">
-            <p>${bookmark.rating || 0}</p>
+            <p>${bookmark.rating || 0} ⭐️</p>
           </section>
         </div>`;
     }
@@ -55,33 +56,33 @@ const generateBookmarkCreateElement = function () {
     <div class="bookmark-render">
       <section class="bookmark-top">
         <div class="content-header">
-          <p class="text-margin">create a bookmark.</p>
+          <h3 class="text-margin">create a bookmark.</h3>
           <button id="close-button" class="gray-button gray-button-margin">close.</button>
         </div>
       </section>
       <section class="bookmarks-app">
         <form id="js-add-bookmark" class="input-container">
           <div>
-            <label for="bookmark-title">title.</label>
-            <input type="text" name="title" id="bookmark-title">
-            <label for="bookmark-url">web address.</label>
-            <input type="url" name="url" id="bookmark-url" placeholder="https://example.com" pattern="https://.*" size="30">
-            <label for="bookmark-description">description.</label>
-            <input type="text" name="desc" id="bookmark-description">
+            <label for="title">title.</label>
+            <input type="text" name="title" id="title" required>
+            <label for="url">web address.</label>
+            <input type="url" name="url" id="url" placeholder="https://example.com" pattern="https://.*" size="30" required>
+            <label for="description">description.</label>
+            <input type="text" name="desc" id="description" aria-label="description.">
           </div>
           <section>
             <div class="add-bookmark-align">
                 <legend>rating.</legend>
-                <input type="radio" id="five-stars" name="rating" value="5">
-                <label for="five-stars" required>5</label>
-                <input type="radio" id="four-stars+" name="rating" value="4">
-                <label for="four-stars+">4</label>
-                <input type="radio" id="three-stars+" name="rating" value="3">
-                <label for="three-stars+">3</label>
-                <input type="radio" id="two-stars+" name="rating" value="2">
-                <label for="two-stars+">2</label>
-                <input type="radio" id="one-star+" name="rating" value="1">
-                <label for="one-stars+">1</label>
+                <input type="radio" id="five-stars" name="rating" aria-label="5" value="5">
+                <label for="five-stars">5⭐️</label>
+                <input type="radio" id="four-stars+" name="rating" aria-label="4+" value="4" required>
+                <label for="four-stars+">4⭐️</label>
+                <input type="radio" id="three-stars+" name="rating" aria-label="3+" value="3">
+                <label for="three-stars+">3⭐️</label>
+                <input type="radio" id="two-stars+" name="rating" aria-label="2+" value="2">
+                <label for="two-stars+">2⭐️</label>
+                <input type="radio" id="one-star+" name="rating" aria-label="1+" value="1">
+                <label for="one-stars+">1⭐️</label>
             </div>
             <div class="add-bookmark-align">
               <button id="add-bookmark" class="brown-button" type="submit" value="submit">add.</button>

@@ -7,30 +7,36 @@
   <title>my bookmarks.</title>
 </head>
 <body>
-    <section class="container">
-        <div class="bookmarks-app">
-            <header>
+    <header>
+        <section class="container">
+            <div class="bookmarks-app">
                 <h1>my bookmarks.</h1>
                 <div>
                     <div id="js-create-bookmark" action="/action_page.php" method="get">
                         <button id="new-bookmark" class="brown-button">+ new.</button>
-                        <select class="js-filter-rating">
+                        <select aria-label="filter" class="js-filter-rating">
                             <option value="" disable selected hidden>filter.</option>
-                            <option value="5">5 stars.</option>
-                            <option value="4">4+ stars.</option>
-                            <option value="3">3+ stars.</option>
-                            <option value="2">2+ stars.</option>
-                            <option value="1">1+ stars.</option>
+                            <option value="5">5+ ⭐️</option>
+                            <option value="4">4+ ⭐️</option>
+                            <option value="3">3+ ⭐️</option>
+                            <option value="2">2+ ⭐️</option>
+                            <option value="1">1+ ⭐️</option>
                         </select>
                     </div> 
                 </div>
-            </header>
-            <div id="error-container" class="bookmark-item-template"></div>
-            <div id="create-screen" class="bookmark-item-template"></div>
-            <section id="js-bookmark-list" class="bookmark-item-template"></section>
-        </div>
-    </section>
-    <footer>
+            </div>
+        </section>
+    </header>     
+    <main>
+        <section class="container">
+            <div class="bookmarks-app">
+                <div id="error-container" class="bookmark-item-template"></div>
+                <div id="create-screen" class="bookmark-item-template"></div>
+                <section id="js-bookmark-list" class="bookmark-item-template"></section>
+            </div>
+        </section>
+    </main> 
+    <footer class="footer">
         <h4 class = "footer-copy">© Copyright Trevor J Alt. All Rights Reserved.</h4>
     </footer>
     

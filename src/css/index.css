@@ -6,18 +6,22 @@
 /* Mobile First Design Settings */
 /* Main "Stage" Setting Styling Elements */
 
-
+html {
+  height: 100%;
+}
 body {
   background: url(images/stacked-books-bg.png) no-repeat center / cover;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 15vh;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
   font-family: 'Nunito', sans-serif;
   text-align: center;
-  height: 100%;
   justify-content: center;
   align-items: center;
 }
@@ -30,9 +34,10 @@ body {
 
 header{
   background-color: #E3C5BB;
-  padding: 3vh;
-  width: 100vw;
+  padding: 3vh 0 3vh 0;
+  width: 100%;
   top: 0;
+  margin-bottom: 2vh;
 }
 
 h1 {
@@ -59,9 +64,14 @@ footer {
   text-align: center;
   margin-top: 2vh;
   background-color: #E3C5BB;
-  padding: 1.5vh;
+  padding: 1.5vh 0 1.5vh 0;
   width: 100vw;
   margin-bottom: 0;
+}
+
+.footer {
+  position: absolute;
+  left:0; right: 0; bottom: 0;
 }
 
 
@@ -224,6 +234,10 @@ form textarea {
 
 
 @media all and (min-width: 800px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+  
   h3 {
     font-size: 1.3rem;
   }
