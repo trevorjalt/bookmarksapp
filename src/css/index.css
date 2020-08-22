@@ -1,9 +1,17 @@
+/* Importing Font */
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+
+/* Mobile First Design Settings */
+/* Main "Stage" Setting Styling Elements */
+
 
 body {
   background: url(images/stacked-books-bg.png) no-repeat center / cover;
   background-attachment: fixed;
 }
+
 .container {
   display: flex;
   flex-direction: column;
@@ -14,15 +22,10 @@ body {
   align-items: center;
 }
 
-h1 {
-  color: #764248;
-  font-size: 3rem;
-  margin: 3vh;
-  /* background-color: white; */
-}
-
-h2, h4 {
-  color: #764248;
+.bookmarks-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header{
@@ -32,6 +35,25 @@ header{
   top: 0;
 }
 
+h1 {
+  color: #764248;
+  font-size: 3rem;
+  margin: 3vh;
+}
+
+h2, h4 {
+  color: #764248;
+}
+
+h2{
+  font-size: 1.4rem;
+}
+
+h3 {
+  color: #243242;
+  font-size: 1.1rem
+}
+
 footer {
   font-family: 'Nunito', sans-serif;
   text-align: center;
@@ -39,34 +61,43 @@ footer {
   background-color: #E3C5BB;
   padding: 1.5vh;
   width: 100vw;
+  margin-bottom: 0;
 }
 
-.bookmarks-app {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+
+/* Button and Dropdown Styles */
+
 
 .brown-button {
   background-color: #DFE2CF;
   color: #664A33;
-  padding: 1.7vh;
+  padding: 1vh;
   border-radius: 20px;
   border: 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin-right: 1vw;
 }
 
 .gray-button {
   background-color: #F2F7F7;
   color: #764248;
-  padding: 1.7vh;
+  padding: 1vh;
   border-radius: 20px;
   border: 0;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin-right: 1vw;
+
 }
 
+.maroon-button {
+  background-color: #764248;
+  color: #F2F7F7;
+  padding: 1vh;
+  border-radius: 20px;
+  border: 0;
+  font-size: 1.1rem;
+  margin-right: 1vw;
+}
 
 select {
   background-color: #DFE2CF;
@@ -78,20 +109,13 @@ select {
   margin-left: 1vw;
 }
 
-/* ul {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
+.button-align a:link    { color: #764248; text-decoration: none; padding: .7vh;}
+.button-align a:visited { color: #412528; text-decoration: none; padding: .7vh;}
 
-ul#js-bookmark-list{
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  list-style-type: none;
-} */
+
+
+/* Bookmark Template State Styles */
+
 
 .bookmark-item-template {
   width: 80%;
@@ -112,10 +136,15 @@ ul#js-bookmark-list{
   background-color: #B3CFD0;
   border-radius: 20px 20px 0 0;
   padding: 1vh;
-  margin: 25px 0;
-
-  
+  margin: 25px 0; 
 }
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
 .text-margin {
   margin-left: 3vw;
@@ -126,20 +155,14 @@ ul#js-bookmark-list{
   text-align: center;
 }
 
-
-.content-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .gray-button-margin {
   margin-right: 3vw;
 }
 
-.input-container {
-  width: 80%;
-}
+
+
+/* Form Styling Elements */
+
 
 form label {
   display: block;
@@ -148,6 +171,7 @@ form label {
   text-align: left;
   margin-top: 2vh
 }
+
 
 form input {
   color: #000;
@@ -164,7 +188,7 @@ form textarea {
   height: 20rem;
   width: 100%;
   color: #000;
-  font-size: 18px;
+  font-size: 1.1rem;
   margin-bottom: 20px;
 }
 
@@ -175,6 +199,58 @@ form textarea {
   margin: 2vh;
 }
 
+.input-container {
+  width: 80%;
+}
+
+/* Error Container Styling */
+
+.error-container-template {
+  background-color: #c09891;
+  width: 100%;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 3vh;
+  padding: 3vh 0 3vh 0;
+  text-align: center;  
+}
+
+.error-text {
+  margin: 3vw;
+}
+
+
+/* Desktop */
+
+
+@media all and (min-width: 800px) {
+  h3 {
+    font-size: 1.3rem;
+  }
+  .brown-button {
+    padding: 1.7vh;
+    font-size: 1.3rem;
+  }
+  
+  .gray-button {
+    padding: 1.7vh;
+    font-size: 1.3rem;
+  }
+  
+  .maroon-button {
+    padding: 1.7vh;
+    font-size: 1.3rem;
+  }
+  
+  .error-container-template {
+    font-size: 1.5rem;
+  }
+
+  .button-align a:link    { padding: 1.4vh;}
+  .button-align a:visited { padding: 1.4vh;}
+  .button-align a:hover   { color: #A66469; text-decoration: none; padding: 1.4vh;}
+  .button-align a:active  { color: #764248; text-decoration: none; padding: 1.4vh;}
+}
 
 
 

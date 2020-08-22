@@ -1,5 +1,9 @@
 const BASE_URL = 'https://thinkful-list-api.herokuapp.com/trevor';
 
+
+// One function to handle all our fetch requests.
+
+
 const listApiFetch = function (...args) {
   let error;
   return fetch(...args)
@@ -22,11 +26,14 @@ const listApiFetch = function (...args) {
     });
 };
 
+
+// CRUD functions
+
+
 const getBookmarks = function () {
   return listApiFetch(`${BASE_URL}/bookmarks`);
 };
 
-// console.log('run' getBookmarks())
 
 const createBookmark = function (json) {
   return listApiFetch(`${BASE_URL}/bookmarks`, {
@@ -44,19 +51,10 @@ const deleteBookmark = function (id) {
   });
 };
 
-// const updateBookmark = function (json) {
-//   return listApiFetch(`${BASE_URL}/bookmarks/${id}`, {
-//     method: 'PATCH',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: json
-//   });
-// };
+
 
 export default {
   getBookmarks,
   createBookmark,
   deleteBookmark,
-  // updateBookmark
 };

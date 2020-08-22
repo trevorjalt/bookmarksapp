@@ -4,6 +4,8 @@ import store from './store';
 import api from './api';
 
 
+// Bookmark Item Templates
+
 const generateBookmarkElement = function (bookmark) {
   if (bookmark.rating >= store.rating) {
     if (bookmark.expand) {
@@ -11,19 +13,19 @@ const generateBookmarkElement = function (bookmark) {
       <div class="bookmark-render js-bookmark-item" data-item-id="${bookmark.id}">
         <section class="bookmark-top">
           <div class="content-header">
-            <p class="text-margin">${bookmark.title}</p>
-            <button id="close-button" class="gray-button gray-button-margin">close.</button>
+            <h3 class="text-margin">${bookmark.title}.</h3>
+            <button id="remove-button" class="maroon-button gray-button-margin">remove.</button>
             </div>
         </section>
         <section class="text-margin">
-          <p>${bookmark.desc}</p>
+          <p>${bookmark.desc ? bookmark.desc : ''}</p>
             <div class="button-align">
 
-                <a href="${bookmark.url}" target="_blank">visit.</a>
-                <button id="js-remove-bookmark" class="gray-button gray-button-margin">remove.</button>
+                <a href="${bookmark.url}" id="visit-site" target="_blank" class="gray-button">visit.</a>
+                <button id="close-button" class="gray-button gray-button-margin">close.</button>
 
             </div>
-            <p>${bookmark.rating}</p>
+            <p>${bookmark.rating || 0}</p>
         </section>
       </div>`;
     } else {
@@ -31,14 +33,15 @@ const generateBookmarkElement = function (bookmark) {
         <div class="bookmark-render js-bookmark-item" data-item-id="${bookmark.id}">
           <section class="bookmark-top">
             <div class="content-header">
-              <p class="text-margin">${bookmark.title}.</p>
-
-                <button id="js-remove-bookmark" class="gray-button gray-button-margin">remove.</button>
-              
+              <h3 class="text-margin">${bookmark.title}.</h3>
+                <div>
+                <button id="expand-button" class="gray-button gray-button-margin">expand.</button>
+                <button id="remove-button" class="maroon-button gray-button-margin">remove.</button>
+                </div>
             </div>
           </section>
           <section class="text-margin">
-            <p>${bookmark.rating}.</p>
+            <p>${bookmark.rating || 0}</p>
           </section>
         </div>`;
     }
@@ -46,8 +49,6 @@ const generateBookmarkElement = function (bookmark) {
     return '';
   }
 };
-
-
 
 const generateBookmarkCreateElement = function () {
   return `
@@ -62,9 +63,9 @@ const generateBookmarkCreateElement = function () {
         <form id="js-add-bookmark" class="input-container">
           <div>
             <label for="bookmark-title">title.</label>
-            <input type="text" name="title" id="bookmark-title" required>
+            <input type="text" name="title" id="bookmark-title">
             <label for="bookmark-url">web address.</label>
-            <input type="url" name="url" id="bookmark-url" placeholder="https://example.com" pattern="https://.*" size="30"required>
+            <input type="url" name="url" id="bookmark-url" placeholder="https://example.com" pattern="https://.*" size="30">
             <label for="bookmark-description">description.</label>
             <input type="text" name="desc" id="bookmark-description">
           </div>
@@ -73,14 +74,14 @@ const generateBookmarkCreateElement = function () {
                 <legend>rating.</legend>
                 <input type="radio" id="five-stars" name="rating" value="5">
                 <label for="five-stars" required>5</label>
-                <input type="radio" id="four-stars" name="rating" value="4">
-                <label for="four-stars">4</label>
-                <input type="radio" id="three-stars" name="rating" value="3">
-                <label for="three-stars">3</label>
-                <input type="radio" id="two-stars" name="rating" value="2">
-                <label for="two-stars">2</label>
-                <input type="radio" id="one-star" name="rating" value="1">
-                <label for="one-stars">1</label>
+                <input type="radio" id="four-stars+" name="rating" value="4">
+                <label for="four-stars+">4</label>
+                <input type="radio" id="three-stars+" name="rating" value="3">
+                <label for="three-stars+">3</label>
+                <input type="radio" id="two-stars+" name="rating" value="2">
+                <label for="two-stars+">2</label>
+                <input type="radio" id="one-star+" name="rating" value="1">
+                <label for="one-stars+">1</label>
             </div>
             <div class="add-bookmark-align">
               <button id="add-bookmark" class="brown-button" type="submit" value="submit">add.</button>
@@ -91,15 +92,57 @@ const generateBookmarkCreateElement = function () {
     </div>`;
 };
 
+const generateErrorElement = function (message) {
+  return `
+      <section class="error-container-template">
+        <h2 id="error-text" class="error-text">Whoops! It seems you've encountered an error: ${message}</h2>
+        <button id="close-error-button" class="brown-button">close.</button>
+      </section>
+    `;
+};
+
+
+// Additional Assistive Functions
+
 
 const generateBookmarksString = function (bookmarkList) {
   const bookmarks = bookmarkList.map((bookmark) => generateBookmarkElement(bookmark));
   return bookmarks.join('');
 };
 
+const getItemIdFromElement = function (item) {
+  return $(item)
+    .closest('.js-bookmark-item')
+    .data('item-id');
+
+};
+
+$.fn.extend({
+  serializeJson: function() {
+    const formData = new FormData(this[0]);
+    const o = {};
+    formData.forEach((val, name) => o[name] = val);
+    return JSON.stringify(o);
+  }
+});
+
+
+// Functions for Rendering
+
+
+const renderError = function () {
+  if (store.error) {
+    const el = generateErrorElement(store.error);
+    $('#error-container').html(el);
+  } else {
+    $('#error-container').empty();
+  }
+};
+
+
 const render = function () {
+  renderError();
   let bookmarks = [...store.bookmarks];
-  console.log(store);
   if (store.addNewBookmark) {
     const html = generateBookmarkCreateElement();
     $('#create-screen').html(html);
@@ -112,11 +155,13 @@ const render = function () {
   $('#js-bookmark-list').html(bookmarksString);
 };
 
+
+// Event Handlers
+
+
 const handleCloseButton = function () {
   $('#create-screen').on('click', '#close-button', function () {
-    // $('#create-screen').empty();
     store.toggleAddNewBookmark();
-    console.log('click');
     render();
   });
 };
@@ -129,19 +174,10 @@ const handleCreateScreen = function () {
   });
 };
 
-$.fn.extend({
-  serializeJson: function() {
-    const formData = new FormData(this[0]);
-    const o = {};
-    formData.forEach((val, name) => o[name] = val);
-    return JSON.stringify(o);
-  }
-});
 
 const handleNewBookmarkSubmit = function () {
   $('#create-screen').on('submit', '#js-add-bookmark', function (event) {
     event.preventDefault();
-    console.log('submit');
     const newBookmarkData = $(event.target).serializeJson();
     api.createBookmark(newBookmarkData)
       .then((newBookmark) => {
@@ -149,24 +185,17 @@ const handleNewBookmarkSubmit = function () {
         store.toggleAddNewBookmark();
         render();
       })
-    // .catch((error) => {
-    //   store.setError(error.message);
-    //   renderError();
-    // });
+      .catch((error) => {
+        store.setError(error.message);
+        renderError();
+      });
   });
 };
 
-const getItemIdFromElement = function (item) {
-  return $(item)
-    .closest('.js-bookmark-item')
-    .data('item-id');
-
-};
 
 const handleExpandBookmark = function () {
   $('#js-bookmark-list').on('click', '.js-bookmark-item', function (event) {
     const id = getItemIdFromElement(event.currentTarget);
-    console.log(event.currentTarget);
     const bookmark = store.findById(id);
     store.findAndUpdate(id, {expand: !bookmark.expand});
     render();
@@ -174,22 +203,17 @@ const handleExpandBookmark = function () {
 };
 
 const handleDeleteItemClicked = function () {
-  $('#js-bookmark-list').on('click', '#js-remove-bookmark', function (event) {
-    console.log('remove');
-    console.log($(event.target));
+  $('#js-bookmark-list').on('click', '#remove-button', function (event) {
     const id = getItemIdFromElement(event.target);
-    
-
     api.deleteBookmark(id)
       .then(() => {
         store.findAndDelete(id);
         render();
       })
-      // .catch((error) => {
-      //   console.log(error);
-      //   store.setError(error.message);
-      //   renderError();
-      // });
+      .catch((error) => {
+        store.setError(error.message);
+        renderError();
+      });
   });
 };
 
@@ -202,6 +226,12 @@ const handleRatingFilterChange = function () {
   });
 };
 
+const handleCloseError = function () {
+  $('#error-container').on('click', '#close-error-button', function () {
+    store.setError(null);
+    renderError();
+  });
+};
 
 
 const bindEventListeners = function () {
@@ -211,6 +241,7 @@ const bindEventListeners = function () {
   handleExpandBookmark();
   handleDeleteItemClicked();
   handleRatingFilterChange();
+  handleCloseError();
 
 };
 
