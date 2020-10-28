@@ -1,6 +1,6 @@
-https://trevorjalt.github.io/bookmarksapp/
+<h1>myBookmarks</h1>
 
-<h1>my bookmarks</h1>
+a live version can be found at [myBookmarks](https://trevorjalt.github.io/bookmarksapp/ "myBookmarks")
 
 an app by trevor j alt
 
